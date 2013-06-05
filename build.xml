@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="kassa" default="war-and-clean">
+	<property name="build" value="build" />
+	<property name="build.deploy" value="${build}/deploy" />
+	<property name="build.web-inf" value="${build.deploy}/WEB-INF" />
+	<property name="classes" value="${build.web-inf}/classes" />
+	<property name="src" value="src" />
+	<property name="web" value="${src}/web" />
+	<property name="resources" value="${src}/resources" />
+	<property name="web-inf" value="${web}/WEB-INF" />
+	<property name="lib" value="lib" />
+	<property name="web.lib" value="${web-inf}/lib" />
+	<property name="log4j.conf" value="log4j.xml" />
+
+	<path id="project.classpath">
+		<fileset dir="${lib}" includes="*.jar" />
+		<fileset dir="${web.lib}" includes="*.jar" />
+	</path>
+
+	<target name="clean">
+		<delete dir="${build}" />
+	</target>
+
+	<target name="prepare-dirs">
+		<mkdir dir="${build}" />
+		<mkdir dir="${build.deploy}" />
+		<mkdir dir="${build.web-inf}" />
+		<mkdir dir="${classes}" />
+	</target>
+
+	<target name="compile" depends="prepare-dirs">
+		<javac srcdir="${src}" destdir="${classes}" classpathref="project.classpath" optimize="on" source="1.6" debug="on" />
+	</target>
+
+	<target name="build" depends="compile">
+		<copy todir="${build.deploy}">
+			<fileset dir="${web}">
+				<exclude name="**/*.template" />
+				<exclude name="**/log4j.*" />
+				<exclude name="**/*.properties" />
+			</fileset>
+		</copy>
+		<copy todir="${classes}" file="${resources}/${log4j.conf}" />
+		<copy todir="${classes}" file="docs/datasource.properties" />
+		<copy todir="${classes}">
+			<fileset dir="${resources}" includes="*.properties">
+			    <excludesfile name="${resources}/datasource.properties"/>
+			</fileset>
+		</copy>
+		<replace token="${context}" value="${ant.project.name}" file="${classes}/${log4j.conf}" />
+	</target>
+
+	<target name="war" depends="build">
+		<war destfile="${ant.project.name}.war" webxml="${build.web-inf}/web.xml">
+			<fileset dir="${build.deploy}" />
+		</war>
+	</target>
+
+	<target name="war-and-clean" depends="war, clean" />
+</project>

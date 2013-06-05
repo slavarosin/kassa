@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="login" template="/WEB-INF/jsp/login.jsp"/>
+
+	<definition name="menu" template="/WEB-INF/tiles/menu.jsp"/>
+
+	<definition name="layout" template="/WEB-INF/tiles/layout.jsp"/>
+
+	<definition name="users" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/users.jsp"/>
+	</definition>
+
+	<definition name="currencies" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/currencies.jsp"/>
+	</definition>
+
+	<definition name="rates" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/rates.jsp"/>
+	</definition>
+
+	<definition name="balance" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/balance.jsp"/>
+	</definition>
+
+	<definition name="comments" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/comments.jsp"/>
+	</definition>
+
+	<definition name="companies" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/companies.jsp"/>
+	</definition>
+
+	<definition name="milestones" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/milestones.jsp"/>
+	</definition>
+
+	<definition name="trades" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/trades.jsp"/>
+	</definition>
+
+	<definition name="items" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/admin/items.jsp"/>
+	</definition>
+
+	<definition name="additem" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/additem.jsp"/>
+	</definition>
+
+	<definition name="addtrade" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/addtrade.jsp"/>
+	</definition>
+
+	<definition name="stats" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/stats.jsp"/>
+	</definition>
+
+	<definition name="tradestats" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/tradestats.jsp"/>
+	</definition>
+
+	<definition name="kassa" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/kassa.jsp"/>
+	</definition>
+</tiles-definitions>

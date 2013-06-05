@@ -1,0 +1,23 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<form method="post">
+    <input name="name"/>
+    <input type="submit" value="<fmt:message key="button.addcompany"/>">
+</form>
+<br><br>
+<table width="50%" border="1">
+	<tr>
+		<th width="40%"><fmt:message key="header.name"/></th>
+		<th><fmt:message key="header.action"/></th>
+	</tr>
+	<c:forEach items="${companies}" var="company">
+        <tr>
+	        <td>${company.name}</td>
+	        <td>&nbsp;<a href="?remove=${company.id}"><fmt:message key="button.remove"/></a></td>
+	    </tr>
+	</c:forEach>
+</table>
+
